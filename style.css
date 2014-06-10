@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'Tengwar Formal CSUR';
+  src: url('fonts/tengwarformalcsur-webfont.eot');
+  src: url('fonts/tengwarformalcsur-webfont.eot?#iefix') format('embedded-opentype'),
+       url('fonts/tengwarformalcsur-webfont.woff') format('woff'),
+       url('fonts/tengwarformalcsur-webfont.ttf') format('truetype'),
+       url('fonts/tengformalcsur-webfont.svg#tengwarformalcsur') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.tengwar { font-family: 'Tengwar Formal CSUR'; font-size: 24pt; }
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 10pt;
+    margin: 0;
+}
+#banner {
+    color: #fff;
+    background-color: #333;
+    padding: 7px 10px;
+}
+#banner h1 {
+    margin: 0;
+    font-size: 12pt;
+    display: inline;
+}
+#content {
+    padding: 10px;
+}
+h3 {
+    font-family: Arial Narrow, Helvetica, sans-serif;
+    font-size: 14pt;
+    font-weight: normal;
+    color: #07f;
+}
+#source {
+    width: 50%;
+    float: left;
+}
+#source textarea {
+    width: 90%;
+    height: 100px;
+}
+#result {
+    width: 50%;
+    float: right;
+}
+#result #text {
+    background-color: #eee;
+    margin-top: 13px;
+    padding: 10px;
+    min-height: 100px;
+}
+
