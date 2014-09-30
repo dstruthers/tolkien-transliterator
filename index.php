@@ -19,18 +19,34 @@ header('Content-type: text/html; charset=UTF-8');
       <h3>Transliterate</h3>
       <div id="source">
         <select id="source-lang">
-          <option value="en">English</option>
+          <option value="latin">Latin Characters</option>
         </select>
         <p><textarea name="source_text"></textarea></p>
       </div>
 
+      <div id="mid">
+        <button id="swap-button" title="Swap Alphabets">&lt;-&gt;</button>
+      </div>
+
       <div id="result">
         <select id="result-lang">
-          <option value="tengwar_phonetic">Tengwar (Phonetic)</option>
+          <option value="tengwar_orthographic">Tengwar (Orthographic)</option>
+          <option value="tengwar_en_phonetic">Tengwar (English Phonetic)</option>
         </select>
-        <div id="text" class="tengwar">
+        <div id="text">
         </div>
       </div>
+    </div>
+    <div id="options">
+      <fieldset>
+        <legend>Options</legend>
+        Tengwar Font:
+        <select id="tengwar-font">
+          <option value="tengwar-formal">Tengwar Formal</option>
+          <option value="tengwar-mono">FreeMono Tengwar</option>
+          <option value="tengwar-telcontar">Tengwar Telcontar</option>
+        </select>
+      </fieldset>
     </div>
   </body>
 </html>

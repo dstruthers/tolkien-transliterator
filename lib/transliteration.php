@@ -58,5 +58,7 @@ class TransliterationResult {
   public $message;
 }
 
-include_once 'transliterators/en_to_tengwar_phonetic.php';
+include_once 'transliterators/latin_to_tengwar_en_phonetic.php';
+include_once 'transliterators/latin_to_tengwar_orthographic.php';
+include_once 'transliterators/tengwar_to_latin_common.php';
 ?>

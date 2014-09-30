@@ -3,7 +3,7 @@ header('Content-type: text/xml; charset=UTF-8');
 require_once 'lib/transliteration.php';
 
 $sourceLang = $_GET['source-lang'];
-$source = $_GET['source'];
+$source = urldecode($_GET['source']);
 $resultLang = $_GET['result-lang'];
 
 $t = new Transliteration($source, $sourceLang, $resultLang);
@@ -11,6 +11,7 @@ $r = $t->result;
 
 ?>
 <trans>
+  <time><?=time()?></time>
   <source>
     <lang><?=$sourceLang?></lang>
     <text><?=$source?></text>

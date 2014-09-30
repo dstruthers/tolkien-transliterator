@@ -1,14 +1,36 @@
 @font-face {
   font-family: 'Tengwar Formal CSUR';
-  src: url('fonts/tengwarformalcsur-webfont.eot');
-  src: url('fonts/tengwarformalcsur-webfont.eot?#iefix') format('embedded-opentype'),
+  src: local('Tengwar Formal CSUR'),
+       url('fonts/tengwarformalcsur-webfont.eot'),
+       url('fonts/tengwarformalcsur-webfont.eot?#iefix') format('embedded-opentype'),
        url('fonts/tengwarformalcsur-webfont.woff') format('woff'),
        url('fonts/tengwarformalcsur-webfont.ttf') format('truetype'),
        url('fonts/tengformalcsur-webfont.svg#tengwarformalcsur') format('svg');
   font-weight: normal;
   font-style: normal;
 }
-.tengwar { font-family: 'Tengwar Formal CSUR'; font-size: 24pt; }
+@font-face {
+  font-family: 'FreeMono Tengwar';
+  src: local('FreeMono Tengwar'),
+       url('fonts/freemonotengwar-webfont.eot'),
+       url('fonts/freemonotengwar-webfont.eot?#iefix') format('embedded-opentype'),
+       url('fonts/freemonotengwar-webfont.woff') format('woff'),
+       url('fonts/freemonotengwar-webfont.ttf') format('truetype'),
+       url('fonts/freemonotengwar-webfont.svg#freemonotengwar') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Tengwar Telcontar';
+  src: local('Tengwar Telcontar'),
+       url('fonts/tengtelc.008.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.tengwar-formal { font-family: 'Tengwar Formal CSUR'; font-size: 24pt; }
+.tengwar-mono { font-family: 'FreeMono Tengwar'; font-size: 24pt; }
+.tengwar-telcontar { font-family: 'Tengwar Telcontar'; font-size: 24pt; }
 
 body {
     font-family: Helvetica, Arial, sans-serif;
@@ -42,6 +64,11 @@ h3 {
     width: 90%;
     height: 100px;
 }
+#mid {
+    position: absolute;
+    left: 50%;
+    margin-left: -50px;
+}
 #result {
     width: 50%;
     float: right;
@@ -52,4 +79,6 @@ h3 {
     padding: 10px;
     min-height: 100px;
 }
-
+#options {
+    clear: both;
+}
