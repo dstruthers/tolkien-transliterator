@@ -49,9 +49,10 @@ function en_to_tengwar_orthographic ($src) {
       break;
 
     case 'OF':
-      if ($i < count($words) - 1 && $words[$i + 1] == 'THE') {
+      if ($i < count($words) - 1 && $words[$i + 2] == 'THE') {
         $output[] = '\ue01d\ue051';
-        $i++;
+        $output[] = $words[$i + 1];
+        $i += 2;
       }
       else {
         $output[] = '\ue01d';

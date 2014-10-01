@@ -1,7 +1,7 @@
 var g_transliterated = '';
 var g_transliteratedFrom = '';
 var g_transliteratedTo = '';
-var g_tengwarClass = 'tengwar-telcontar';
+var g_tengwarClass = 'tengwar-formal';
 var g_transliterationDirection = 0;
 var g_lastTransliteration = 0;
 
