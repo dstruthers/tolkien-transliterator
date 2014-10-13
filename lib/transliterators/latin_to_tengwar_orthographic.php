@@ -133,7 +133,7 @@ function en_to_tengwar_orthographic ($src, $options = FALSE) {
                   $lastTengwa = '\ue02e';
                 }
               }
-              elseif (!$tengwar && !$word) {
+              elseif (!$tengwar) {
                 $tengwar .= '\ue02e' . $vowelMap[$vowel];
                 $lastTengwa = '\ue02e';
               }
