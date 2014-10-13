@@ -50,14 +50,14 @@ $(function () {
 
     $('#toggle-tengwar-keyboard').click(toggleTengwarKeyboard);
 
-    if (navigator.userAgent.toUpperCase().indexOf('FIREFOX') == -1 && localStorage.noticeDismissed != true) {
+    if (navigator.userAgent.toUpperCase().indexOf('FIREFOX') == -1 && localStorage.noticeDismissed != 'dismissed') {
         $('#notice').html('Hey! Use <a href="http://getfirefox.com/" target="_blank">Mozilla Firefox</a> for the best results with this tool. <a href="#" id="dismiss-notice">Dismiss</a>');
         $('#notice').slideDown();
     }
 
     $('#dismiss-notice').click(function () {
         $('#notice').slideUp();
-        localStorage.noticeDismissed = true;
+        localStorage.noticeDismissed = 'dismissed';
     });
 });
 
