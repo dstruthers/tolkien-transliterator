@@ -123,9 +123,18 @@ function en_to_tengwar_orthographic ($src, $options = FALSE) {
               $lastTengwa = '\ue02c';
               $vowels = substr($vowels, 1);
             }
+            elseif ($vowels == 'I' || $vowels == 'U') {
+              if ($vowels == 'I') {
+                $tengwar .= '\ue02a' . $vowelMap[$vowel];
+              }
+              else {
+                $tengwar .= '\ue02b' . $vowelMap[$vowel];
+              }
+              $vowels = '';
+            }
             else {
               if ($tengwar && ($vowels || !$word)) {
-                if ($vowel == 'E' && !$word) {
+                if ($vowel == 'E' && !$word && !$vowels) {
                   $tengwar .= '\ue045';
                 }
                 else {
@@ -133,7 +142,7 @@ function en_to_tengwar_orthographic ($src, $options = FALSE) {
                   $lastTengwa = '\ue02e';
                 }
               }
-              elseif (!$tengwar) {
+              elseif (!$tengwar && $vowels) {
                 $tengwar .= '\ue02e' . $vowelMap[$vowel];
                 $lastTengwa = '\ue02e';
               }
