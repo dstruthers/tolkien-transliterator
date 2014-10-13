@@ -1,10 +1,11 @@
 <?php
 class Transliteration {
-  public function __construct ($source, $sourceLang, $targetLang) {
+  public function __construct ($source, $sourceLang, $targetLang, $options = FALSE) {
+    $this->options = $options ? $options : new TransliterationOptions();
     $result = new TransliterationResult();
     if (self::transliteratorExists($sourceLang, $targetLang)) {
       $t = self::transliteratorFor($sourceLang, $targetLang);
-      $r = $t['function']($source);
+      $r = $t['function']($source, $this->options);
       $result->source = $source;
       $result->sourceLang = $sourceLang;
       $result->result = $r;
@@ -47,6 +48,7 @@ class Transliteration {
 
   public $result;
   private static $transliterators = array();
+  private $options;
 }
 
 class TransliterationResult {
@@ -56,6 +58,18 @@ class TransliterationResult {
   public $resultLang;
   public $success;
   public $message;
+}
+
+class TransliterationOptions {
+  public function __construct () {
+    $this->numeralBase = 12;
+    $this->numeralDir = 'rtl';
+    $this->spaceChar = ' ';
+  }
+
+  public $numeralBase;
+  public $numeralDir;
+  public $spaceChar;
 }
 
 include_once 'transliterators/latin_to_tengwar_en_phonetic.php';

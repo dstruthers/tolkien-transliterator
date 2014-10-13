@@ -1,5 +1,7 @@
 <?php
-function en_to_tengwar_orthographic ($src) {
+function en_to_tengwar_orthographic ($src, $options = FALSE) {
+  $options = $options ? $options : new TransliterationOptions();
+
   $consonantMap = array('CH' => '\ue002',
                         'GH' => '\ue00f',
                         'NG' => '\ue013',
@@ -36,12 +38,53 @@ function en_to_tengwar_orthographic ($src) {
                     'O' => '\ue04a',
                     'U' => '\ue04c'
                     );
+
+  $numeralMap = array('0' => '\ue070',
+                      '1' => '\ue071',
+                      '2' => '\ue072',
+                      '3' => '\ue073',
+                      '4' => '\ue074',
+                      '5' => '\ue075',
+                      '6' => '\ue076',
+                      '7' => '\ue077',
+                      '8' => '\ue078',
+                      '9' => '\ue079',
+                      'A' => '\ue07a',
+                      'B' => '\ue07b'
+                      );
+
+  $duodecimalIndicator = '\ue07d';
   
   $words = preg_split('/\b/', strtoupper($src));
   $output = '';
 
   for ($i = 0; $i < count($words); $i++) {
     $word = $words[$i];
+
+    if (preg_match('/^[0-9]+$/', $word)) {
+      $tengwarNumber = $word;
+      $numberResult = '';
+      if ($options->numeralBase != 10) {
+        $tengwarNumber = strtoupper(base_convert($tengwarNumber, 10, $options->numeralBase));
+      }
+      if ($options->numeralDir == 'rtl') {
+        $tengwarNumber = strrev($tengwarNumber);
+      }
+
+      for ($j = 0; $j < strlen($tengwarNumber); $j++) {
+        $numberResult .= $numeralMap[$tengwarNumber{$j}];
+        if ($options->numeralBase == 12) {
+          if ($options->numeralDir == 'rtl' && $j == 0) {
+            $numberResult .= $duodecimalIndicator;
+          }
+          if ($options->numeralDir == 'ltr' && $j == strlen($tengwarNumber) - 1) {
+            $numberResult .= $duodecimalIndicator;
+          }
+        }
+      }
+      $output[] = $numberResult;
+      continue;
+    }
 
     switch ($word) {
     case 'THE':
@@ -195,7 +238,9 @@ function en_to_tengwar_orthographic ($src) {
       $output[] = $tengwar;
     } // switch
   } // for 
-  //return implode(' ', $output);
+  if ($options->spaceChar != ' ') {
+    $output = preg_replace('/ /', $options->spaceChar, $output);
+  }
   return json_decode('"' . implode('', $output) . '"');
 } // function
 Transliteration::registerTransliterator('en', 'tengwar_orthographic', 'en_to_tengwar_orthographic');
