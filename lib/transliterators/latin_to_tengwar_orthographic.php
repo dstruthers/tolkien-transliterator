@@ -126,9 +126,11 @@ function en_to_tengwar_orthographic ($src, $options = FALSE) {
             elseif ($vowels == 'I' || $vowels == 'U') {
               if ($vowels == 'I') {
                 $tengwar .= '\ue02a' . $vowelMap[$vowel];
+                $lastTengwa = '\ue02a';
               }
               else {
                 $tengwar .= '\ue02b' . $vowelMap[$vowel];
+                $lastTengwa = '\ue02b';
               }
               $vowels = '';
             }
@@ -145,6 +147,9 @@ function en_to_tengwar_orthographic ($src, $options = FALSE) {
               elseif (!$tengwar && $vowels) {
                 $tengwar .= '\ue02e' . $vowelMap[$vowel];
                 $lastTengwa = '\ue02e';
+              }
+              elseif (!$tengwar && !$vowels && !$word) {
+                $output[] .= '\ue02e' . $vowelMap[$vowel];
               }
               else {
                 $tehtar .= $vowelMap[$vowel];
